@@ -2,16 +2,47 @@ window.addEventListener("load", doneLoading);
 
 var icecreams;
 
+var result;
+
 // the object used for the final resulting product
-var result = {
-    toppings: [],
-    scoops: [],
-    cone: null,
-    totalPrice: 0
+class Result {
+    constructor() {
+        this.toppings = [];
+        this.scoops = [];
+        this.cone = null;
+
+    }
+
+    addIcecream( icecream ) {
+        this.scoops.push( icecream );
+
+        // display new info
+        var infoclone = document.querySelector("#result_icecream_template").content.cloneNode(true);
+        infoclone.querySelector(".data_name").textContent = icecream.name;
+        document.querySelector("#result ul.icecreams").appendChild(infoclone);
+
+        // calculate total
+
+
+        // and display the price
+        document.querySelector("#result .totalprice .price").textContent = this.totalPrice;
+    }
+
+    removeIcecream( index ) {
+        this.scoops.splice(index,1);
+    }
+
+
+    get totalPrice() {
+        console.log("Doing total price calculation");
+        return this.scoops.reduce( (acc, ics)=> acc+= ics.price, 0 );
+    }
+
 }
 
 // an object used for animating an icecream scoop
 class Animate {
+
     constructor( icecream, startelement, endelement ) {
         this.icecream = icecream;
 
@@ -72,22 +103,21 @@ class Animate {
             if( this.cur >= this.dist ) {
                 this.active = false;
 
-                // TODO: Not pretty - make it call a given function ...
-                // when animation is done - add the ice-cream to the list
+                // make the endelement visible
+                this.endelement.style.display = "block";
 
-                if( this.callback ) {
-                    this.callback();
+                if( this.onComplete ) {
+                    this.onComplete();
                 }
 
                 // and remove the animation-element
                 this.element.parentNode.removeChild( this.element );
-
             }
         }
     }
+
+
 }
-
-
 
 
 function doneLoading() {
@@ -106,10 +136,11 @@ function getJSONData(data) {
     // build icecream-grid
     icecreams.forEach( createIceCream );
 
+    // create resulting product
+    result = new Result();
+
     // start animations
     window.requestAnimationFrame( runAnimations );
-
-
 }
 
 
@@ -156,43 +187,14 @@ function selectIceCream( event ) {
 
     // create animate-object
     var animate = new Animate( icecream, element, clone );
-
-    animate.callback = function() {
-         addScoop( icecream, animate );
-    }
-
     animate.active = true;
-
-
-
+    animate.onComplete = function() {
+        result.addIcecream( icecream );
+    }
 
     animations.push( animate );
 }
 
-
-
-function addScoop( icecream, animate ) {
-    animate.endelement.dataset.index = result.scoops.length;
-
-    result.scoops.push( icecream );
-
-    // show the resulting image
-    animate.endelement.style.display = "block";
-
-    // make it possible to remove the result
-    animate.endelement.addEventListener("click", removeScoop);
-
-    // display new info
-    var infoclone = document.querySelector("#result_icecream_template").content.cloneNode(true);
-    infoclone.querySelector(".data_name").textContent = icecream.name;
-    document.querySelector("#result ul.icecreams").appendChild(infoclone);
-
-    // calculate total
-    result.totalPrice = result.scoops.reduce( (acc, ics)=> acc+= ics.price, 0 );
-
-    // and display the price
-    document.querySelector("#result .totalprice .price").textContent = result.totalPrice;
-}
 
 
 function removeScoop( event ) {
