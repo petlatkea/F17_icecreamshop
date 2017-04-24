@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ice Cream Shop</title>
+    <link rel="stylesheet" href="icecreamshop.css" type="text/css">
+</head>
+
+<body>
+    <header>
+        The logo
+
+    </header>
+
+    <div class="sidebyside">
+
+        <div class="left">
+
+            <section id="toppings">
+                <h2>Toppings</h2>
+            </section>
+
+            <section id="icecreams">
+                <h2>Ice cream</h2>
+
+
+
+                <div class="content">
+
+                <template id="icecream_template">
+                <div class="icecream">
+                    <img class="scoop data_image" src="images/icecream/banana.png" alt="Banana">
+                    <span class="name data_name">Banana</span>
+                    <span class="price"><span class="data_price">4</span>,-</span>
+
+                </div>
+                </template>
+
+                </div>
+
+
+            </section>
+
+            <section id="cups">
+                <h2>Cup</h2>
+            </section>
+        </div>
+        <div class="right">
+
+            <section id="result">
+                <h2>Your personalized ice cream</h2>
+                <div class="content">
+
+                   <div class="image">
+                       <template id="result_icecream_image_template">
+                           <img class="scoop data_image" src="images/icecream/banana.png" alt="Banana">
+                       </template>
+                   </div>
+                   <h3>Ingredients</h3>
+                   <h4>Toppings:</h4>
+                       <ul class="toppings"></ul>
+                   <h4>Ice creams:</h4>
+                       <ul class="icecreams">
+                           <template id="result_icecream_template">
+                               <li><span class="data_name">NAME</span></li>
+                           </template>
+
+                       </ul>
+                   <h4>Cone:</h4>
+                       <ul class="cone"></ul>
+
+
+                   <div class="totalprice">
+                       Price <span class="price">4</span>,-
+                   </div>
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+    <div id="animationlayer"></div>
+
+
+    <script src="icecreamshop.js"></script>
+</body>
+</html>

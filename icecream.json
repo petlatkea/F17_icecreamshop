@@ -1,0 +1,197 @@
+[
+    {
+        "id": "fl01",
+
+        "type": "scoop",
+        "name": "Banana",
+        "image": "banana.png",
+        "price": 2
+},
+    {
+        "id": "fl02",
+
+        "type": "scoop",
+        "name": "Blackcurrant & Cream",
+        "image": "blackcream.png",
+        "price": 3
+},
+    {
+        "id": "fl03",
+
+        "type": "scoop",
+        "name": "Blueberry Cheesecake",
+        "image": "blueberrycheesecake.png",
+        "price": 4
+},
+    {
+        "id": "fl04",
+
+        "type": "scoop",
+        "name": "Cappucino",
+        "image": "cappucino.png",
+        "price": 6
+},
+    {
+        "id": "fl05",
+
+        "type": "scoop",
+        "name": "Caramelita",
+        "image": "caramelita.png",
+        "price": 2
+},
+    {
+        "id": "fl06",
+
+        "type": "scoop",
+        "name": "Cinnamon",
+        "image": "cinnamon.png",
+        "price": 4
+},
+    {
+        "id": "fl07",
+        "type": "scoop",
+        "name": "Coconut & Chocolate",
+        "image": "coconut-chocolate.png",
+        "price": 3
+},
+    {
+        "id": "fl08",
+        "type": "scoop",
+        "name": "Coconut",
+        "image": "coconut.png",
+        "price": 2
+},
+    {
+        "id": "fl09",
+        "type": "scoop",
+        "name": "Crème Brûlée",
+        "image": "creme-brulee.png",
+        "price": 5
+},
+    {
+        "id": "fl0a",
+        "type": "scoop",
+        "name": "Double Cream & Meringue",
+        "image": "double-creme-meringue.png",
+        "price": 6
+},
+    {
+        "id": "fl0b",
+        "type": "scoop",
+        "name": "Espresso Croquant",
+        "image": "espresso-croquant.png",
+        "price": 7
+},
+    {
+        "id": "fl0c",
+        "type": "scoop",
+        "name": "Hazelnut",
+        "image": "hazelnut.png",
+        "price": 4
+},
+    {
+        "id": "fl0d",
+        "type": "scoop",
+        "name": "Macademia Dulce de Leche",
+        "image": "macadamia.png",
+        "price": 5
+},
+    {
+        "id": "fl0e",
+        "type": "scoop",
+        "name": "Mango & Cream",
+        "image": "mango-cream.png",
+        "price": 3
+},
+    {
+        "id": "fl0f",
+        "type": "scoop",
+        "name": "Mint Chocolate",
+        "image": "mint-chocolate.png",
+        "price": 2
+},
+    {
+        "id": "fl10",
+        "type": "scoop",
+        "name": "Panna Cotta",
+        "image": "panna-cotta.png",
+        "price": 5
+},
+    {
+        "id": "fl11",
+        "type": "scoop",
+        "name": "Pistachio",
+        "image": "pistachio.png",
+        "price": 4
+},
+    {
+        "id": "fl12",
+        "type": "scoop",
+        "name": "Rum Raisin",
+        "image": "rhum-raisin.png",
+        "price": 4
+},
+    {
+        "id": "fl13",
+        "type": "scoop",
+        "name": "Stracciatella",
+        "image": "stracciatella.png",
+        "price": 4
+},
+    {
+        "id": "fl14",
+        "type": "scoop",
+        "name": "Strawberry",
+        "image": "stramberry.png",
+        "price": 3
+},
+    {
+        "id": "fl15",
+        "type": "scoop",
+        "name": "Swiss Chocolate",
+        "image": "swiss-chocolate.png",
+        "price": 6
+},
+    {
+        "id": "fl16",
+        "type": "scoop",
+        "name": "Tiramisu",
+        "image": "tiramisu.png",
+        "price": 7
+},
+    {
+        "id": "fl17",
+        "type": "scoop",
+        "name": "Vanilla Dream",
+        "image": "vanilla-dream.png",
+        "price": 2
+},
+    {
+        "id": "fl18",
+        "type": "scoop",
+        "name": "Vanilla & Brownie",
+        "image": "vanillabrownie.png",
+        "price": 3
+},
+    {
+        "id": "fl19",
+        "type": "scoop",
+        "name": "Maple Walnut",
+        "image": "walnut.png",
+        "price": 4
+},
+    {
+        "id": "fl1a",
+        "type": "scoop",
+        "name": "White Chocolate",
+        "image": "white-chocolate.png",
+        "price": 3
+},
+    {
+        "id": "fl1b",
+        "type": "scoop",
+        "name": "yogurt",
+        "image": "yogurt.png",
+        "price": 2
+}
+]

@@ -1,0 +1,106 @@
+body {
+
+}
+
+.sidebyside {
+    display: flex;
+}
+
+.left {
+    flex-grow: 6;
+}
+
+.right {
+    flex-grow: 1;
+}
+
+#icecreams {
+    background-color: #d7f5e4;
+
+}
+
+#icecreams .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.icecream {
+    text-align: center;
+    position: relative;
+}
+
+.icecream .scoop {
+    width: 12vw;
+    display: block;
+    margin: 0 auto;
+}
+
+.bounce {
+    animation-name: bounce;
+    animation-duration: .5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-out;
+    animation-direction: alternate;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-10%);
+    }
+}
+
+.icecream .price {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 3vw;
+    font-family: Arial; /* TODO: Better font! */
+    background-color: white;
+    width: 4vw;
+    height: 4vw;
+    border-radius: 40px;
+}
+
+#result h2 {
+    white-space: nowrap;
+}
+
+#result .image {
+    margin: 0 auto;
+    height: 30vw;
+    width: 25vw;
+    background-image: url("images/completecone.svg");
+    background-size: 40%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    position: relative;
+}
+
+#result .image .scoop {
+    position: absolute;
+    width: 12vw;
+}
+
+
+#animationlayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+
+}
+
+#animationlayer .animationobject {
+    position: absolute;
+}
+
+#animationlayer .scoop {
+    width: 12vw;
+    display: block;
+}
