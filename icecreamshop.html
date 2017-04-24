@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Ice Cream Shop</title>
@@ -23,11 +24,9 @@
             <section id="icecreams">
                 <h2>Ice cream</h2>
 
-
-
                 <div class="content">
 
-                <template id="icecream_template">
+                    <template id="icecream_template">
                 <div class="icecream">
                     <img class="scoop data_image" src="images/icecream/banana.png" alt="Banana">
                     <span class="name data_name">Banana</span>
@@ -51,28 +50,27 @@
                 <h2>Your personalized ice cream</h2>
                 <div class="content">
 
-                   <div class="image">
-                       <template id="result_icecream_image_template">
+                    <div class="image">
+                        <template id="result_icecream_image_template">
                            <img class="scoop data_image" src="images/icecream/banana.png" alt="Banana">
                        </template>
-                   </div>
-                   <h3>Ingredients</h3>
-                   <h4>Toppings:</h4>
-                       <ul class="toppings"></ul>
-                   <h4>Ice creams:</h4>
-                       <ul class="icecreams">
-                           <template id="result_icecream_template">
-                               <li><span class="data_name">NAME</span></li>
-                           </template>
+                    </div>
+                    <h3>Ingredients</h3>
+                    <h4>Toppings:</h4>
+                    <ul class="toppings"></ul>
+                    <h4>Ice creams:</h4>
+                    <ul class="icecreams">
+                        <template id="result_icecream_template">
+                            <li><span class="data_name">NAME</span></li>
+                        </template>
+                    </ul>
+                    <h4>Cone:</h4>
+                    <ul class="cone"></ul>
 
-                       </ul>
-                   <h4>Cone:</h4>
-                       <ul class="cone"></ul>
 
-
-                   <div class="totalprice">
-                       Price <span class="price">4</span>,-
-                   </div>
+                    <div class="totalprice">
+                        Price <span class="price">4</span>,-
+                    </div>
                 </div>
             </section>
 
@@ -85,4 +83,5 @@
 
     <script src="icecreamshop.js"></script>
 </body>
+
 </html>

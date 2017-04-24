@@ -10,6 +10,82 @@ var result = {
     totalPrice: 0
 }
 
+// an object used for animating an icecream scoop
+
+
+function Animate( icecream, startelement, endelement ) {
+        this.icecream = icecream;
+
+        this.element = startelement.querySelector(".data_image").cloneNode(true);
+        this.endelement = endelement;
+
+        // now add the animated element
+        document.querySelector("#animationlayer").appendChild( this.element );
+        this.element.classList.add("animationobject");
+
+        // calculate start-positions
+        this.startx = startelement.offsetLeft + 7;
+        this.starty = startelement.offsetTop;
+
+        // calculate end-positions
+        var endposition = endelement.getBoundingClientRect();
+
+        this.endx = endposition.left;
+        this.endy = endposition.top;
+
+        // calculate distance, scale and speed
+        this.dist = Math.sqrt( (this.endx - this.startx)*(this.endx - this.startx) + (this.endy - this.starty)*(this.endy - this.starty));
+
+        this.scale = Math.PI / this.dist;
+
+        this.speedx = (this.endx - this.startx) / this.dist;
+        this.speedy = (this.endy - this.starty) / this.dist;
+
+        // make the endelement invisible
+        this.endelement.style.display = "none";
+
+        // initialize current
+        this.cur = 0;
+
+        this.curx = this.startx;
+        this.cury = this.starty;
+
+        this.speed = 300;
+    }
+
+function move( deltaTime ) {
+        // check if there is an existing animation
+        if( this.active ) {
+
+            this.cur += this.speed * deltaTime;
+
+            // cur is where on the line
+            this.curx = this.cur * this.speedx;
+            // calculate x and y from the line
+            this.cury = this.cur * this.speedy;
+
+            var modifyY = Math.sin( this.cur * this.scale )*Math.abs(160);
+            this.cury -= modifyY;
+
+            this.element.style.left = this.startx + this.curx + "px";
+            this.element.style.top = this.starty + this.cury + "px";
+
+            if( this.cur >= this.dist ) {
+                this.active = false;
+
+                // TODO: Not pretty - make it call a given function ...
+                // when animation is done - add the ice-cream to the list
+                addScoop( this.icecream, this );
+
+                // and remove the animation-element
+                this.element.parentNode.removeChild( this.element );
+
+            }
+        }
+    }
+
+
+
 
 
 function doneLoading() {
@@ -30,6 +106,8 @@ function getJSONData(data) {
 
     // start animations
     window.requestAnimationFrame( runAnimations );
+
+
 }
 
 
@@ -59,12 +137,11 @@ function createIceCream( data ) {
 
 function selectIceCream( event ) {
     var element = event.currentTarget;
-
     var id = element.dataset.id;
+    var icecream = icecreams.find( ice => ice.id == id );
 
     // create a clone of just the image
     var clone = element.querySelector(".data_image").cloneNode(true);
-    animate.element = element.querySelector(".data_image").cloneNode(true);
 
     var container = document.querySelector("#result .image");
 
@@ -75,61 +152,28 @@ function selectIceCream( event ) {
     clone.style.top = container.clientHeight / 2 - clone.clientHeight/3 * result.scoops.length + "px";
     clone.style.left = clone.clientWidth/4 + clone.clientWidth/2 * (result.scoops.length % 2) + "px";
 
-    // find absolute position
-    var endposition = clone.getBoundingClientRect();
-
-    // make the clone invisible
-    clone.style.display = "none";
-
-    animate.result = clone;
-
-    // now add the animated element
-    document.querySelector("#animationlayer").appendChild( animate.element );
-
-
-
-    // create animated object
-    animate.element.classList.add("animationobject");
-
-    animate.id = id;
-
-    animate.startx = element.offsetLeft + 7;
-    animate.starty = element.offsetTop;
-
-    animate.curx = animate.startx;
-    animate.cury = animate.starty;
-
-    animate.endx = endposition.left;
-    animate.endy = endposition.top;
-
-    animate.dist = Math.sqrt( (animate.endx - animate.startx)*(animate.endx - animate.startx) + (animate.endy - animate.starty)*(animate.endy - animate.starty));
-
-    animate.cur = 0;
-
-    animate.speed = 300;
-    animate.scale = Math.PI / animate.dist;
-
-    animate.speedx = (animate.endx - animate.startx) / animate.dist;
-    animate.speedy = (animate.endy - animate.starty) / animate.dist;
-
+    // create animate-object
+    var animate = new Animate( icecream, element, clone );
     animate.active = true;
+
+
+
+
+    animations.push( animate );
 }
 
 
 
-function addScoop( id, animate ) {
-    // find icecream
-    var icecream = icecreams.find( ice => ice.id == id );
-
-    animate.result.dataset.index = result.scoops.length;
+function addScoop( icecream, animate ) {
+    animate.endelement.dataset.index = result.scoops.length;
 
     result.scoops.push( icecream );
 
     // show the resulting image
-    animate.result.style.display = "block";
+    animate.endelement.style.display = "block";
 
     // make it possible to remove the result
-    animate.result.addEventListener("click", removeScoop);
+    animate.endelement.addEventListener("click", removeScoop);
 
     // display new info
     var infoclone = document.querySelector("#result_icecream_template").content.cloneNode(true);
@@ -172,18 +216,9 @@ function removeScoop( event ) {
 }
 
 
-// an object used for animating an icecream scoop
-var animate = {
-    active: false,
-    element: null,
-    startx: 0,
-    starty: 0,
-    curx: 0,
-    cury: 0,
-    endx: 0,
-    endy: 0
-}
 
+
+var animations = [];
 
 var lasttime;
 
@@ -195,33 +230,8 @@ function runAnimations() {
     var deltaTime = (now - (lasttime || now))/1000;
     lasttime = now;
 
-    // check if there is an existing animation
-    if( animate.active ) {
+    animations.forEach( animate => animate.move(deltaTime) );
 
-        animate.cur += animate.speed * deltaTime;
-
-        // cur is where on the line
-        animate.curx = animate.cur * animate.speedx;
-        // calculate x and y from the line
-        animate.cury = animate.cur * animate.speedy;
-
-        var modifyY = Math.sin( animate.cur * animate.scale )*Math.abs(160);
-        animate.cury -= modifyY;
-
-        animate.element.style.left = animate.startx + animate.curx + "px";
-        animate.element.style.top = animate.starty + animate.cury + "px";
-
-        if( animate.cur >= animate.dist ) {
-            animate.active = false;
-
-            // when animation is done - add the ice-cream to the list
-            addScoop( animate.id, animate );
-
-            // and remove the animation-element
-            animate.element.parentNode.removeChild( animate.element );
-
-        }
-    }
 }
 
 
