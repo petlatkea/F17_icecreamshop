@@ -74,7 +74,10 @@ class Animate {
 
                 // TODO: Not pretty - make it call a given function ...
                 // when animation is done - add the ice-cream to the list
-                addScoop( this.icecream, this );
+
+                if( this.callback ) {
+                    this.callback();
+                }
 
                 // and remove the animation-element
                 this.element.parentNode.removeChild( this.element );
@@ -153,6 +156,11 @@ function selectIceCream( event ) {
 
     // create animate-object
     var animate = new Animate( icecream, element, clone );
+
+    animate.callback = function() {
+         addScoop( icecream, animate );
+    }
+
     animate.active = true;
 
 
