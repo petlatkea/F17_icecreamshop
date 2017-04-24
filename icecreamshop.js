@@ -11,9 +11,8 @@ var result = {
 }
 
 // an object used for animating an icecream scoop
-
-
-function Animate( icecream, startelement, endelement ) {
+class Animate {
+    constructor( icecream, startelement, endelement ) {
         this.icecream = icecream;
 
         this.element = startelement.querySelector(".data_image").cloneNode(true);
@@ -53,7 +52,7 @@ function Animate( icecream, startelement, endelement ) {
         this.speed = 300;
     }
 
-function move( deltaTime ) {
+    move( deltaTime ) {
         // check if there is an existing animation
         if( this.active ) {
 
@@ -83,7 +82,7 @@ function move( deltaTime ) {
             }
         }
     }
-
+}
 
 
 
